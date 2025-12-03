@@ -1,3 +1,5 @@
+#Zmanager
+
 This is a repository containing the files of the Zmanager project.
 
 What is Zmanager ? 
@@ -9,6 +11,8 @@ Is it useful ?
 Can i use it for my Zoo ? 
   - No, it will lead to big security concerns if you try to use this education oriented project as a real professional tool
 
+If i am not a Zoo employee, how to use it ?
+  - 
 Did you use AI to code the project ? 
   - I am quite sceptic about AI, however i think programmation is a great tool which leads to wonderful projects. AI can be used as long as the developper understands fully what he is doing
     personally i used ChatGPT to plan the project infrastructure, but all HTML files were handwritten (on paper literally, yes), the "production" server was deployed with Portainer aswell.
