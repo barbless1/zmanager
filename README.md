@@ -1,3 +1,186 @@
+🐾 Zoo Management System (Django + MySQL)
+
+A simple web application built with Django 5 that allows users to browse animals, search information, and manage staff accounts.The project includes three user roles: Visitor, Keeper, and Administrator.
+
+This guide explains how to install and run the project on Windows, Linux, or macOS.
+
+✅ Features
+
+User authentication (login/logout)
+
+Role‑based access:
+
+Visitor: read‑only access
+
+Keeper: manage animals and visits
+
+Administrator: manage users (create, edit, delete)
+
+Animal search page
+
+Custom admin dashboard (not Django admin)
+
+MySQL database support
+
+📦 1. Requirements
+
+You need:
+
+Python 3.10+
+
+MySQL Server 8+
+
+pip (Python package manager)
+
+Git (optional)
+
+📁 2. Clone the project
+
+git clone https://github.com/your-username/zoo-project.git
+cd zoo-project
+
+📚 3. Install dependencies
+
+The project includes a requirements.txt file.
+
+✅ Windows
+
+py -m pip install -r requirements.txt
+
+✅ Linux / macOS
+
+python3 -m pip install -r requirements.txt
+
+⚠️ Linux users: install MySQL headers first
+
+Ubuntu / Debian:
+
+sudo apt install default-libmysqlclient-dev build-essential
+
+Fedora:
+
+sudo dnf install mysql-devel
+
+🗄️ 4. Configure the database
+
+Create a MySQL database:
+
+CREATE DATABASE zoo_db CHARACTER SET utf8mb4;
+
+Create a MySQL user (optional):
+
+CREATE USER 'zoo_user'@'localhost' IDENTIFIED BY 'password123';
+GRANT ALL PRIVILEGES ON zoo_db.* TO 'zoo_user'@'localhost';
+FLUSH PRIVILEGES;
+
+⚙️ 5. Configure Django settings
+
+Edit zoo_project/settings.py:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'zoo_db',
+        'USER': 'zoo_user',
+        'PASSWORD': 'password123',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+
+🏗️ 6. Apply migrations
+
+python manage.py migrate
+
+👤 7. Create an admin user
+
+python manage.py createsuperuser
+
+This user can log into Django’s built‑in admin panel at:
+
+http://127.0.0.1:8000/admin/
+
+▶️ 8. Run the server
+
+python manage.py runserver
+
+Open your browser:
+
+http://127.0.0.1:8000/
+
+🧪 9. Default pages
+
+URL
+
+Description
+
+/
+
+Home page
+
+/login/
+
+User login
+
+/recherche/
+
+Animal search
+
+/admin/
+
+Custom admin dashboard (role = 2)
+
+/admin/ (Django admin)
+
+Built‑in admin interface
+
+🛠️ 10. Project structure
+
+zoo_project/
+│   manage.py
+│   requirements.txt
+│
+├── zoo_project/
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+└── zoo_app/
+    ├── models.py
+    ├── views.py
+    ├── urls.py
+    └── templates/
+        └── zoo_app/
+            ├── base.html
+            ├── accueil.html
+            ├── recherche.html
+            ├── fiche_animal.html
+            ├── login.html
+            └── admin.html
+
+✅ 11. Troubleshooting
+
+✅ MySQL client installation fails
+
+Install MySQL development headers (Linux):
+
+sudo apt install default-libmysqlclient-dev
+
+✅ TemplateDoesNotExist
+
+Make sure templates are inside:
+
+zoo_app/templates/zoo_app/
+
+✅ Access denied for user
+
+Check your MySQL username/password in settings.py.
+
+
+- - - - - - - - - - - - - - - - - - - - -
+
+from barbless1/zmanager :
+
 # Zmanager
 
 This is a repository containing the files of the Zmanager project.
