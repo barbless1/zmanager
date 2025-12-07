@@ -5,6 +5,7 @@ from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Animal, Accidents, Visite
+from django.shortcuts import render, get_object_or_404
 
 def login_view(request):
     if request.method == "POST":
@@ -75,3 +76,8 @@ def edit_animal(request, id):
 def delete_animal(request, id):
     Animal.objects.get(id=id).delete()
     return redirect('dashboard')
+
+@login_required
+def animal_edit(request, animal_id):
+    animal = get_object_or_404(Animal, id=animal_id)
+    return render(request, "animal_edit.html", {"animal": animal})
