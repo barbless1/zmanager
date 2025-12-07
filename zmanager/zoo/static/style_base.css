@@ -151,13 +151,22 @@ html, body {
     font-size: 50px;
 }
 
+
 /* Action links */
 .animal-actions a {
     margin-right: 10px;
     text-decoration: none;
-    color: #007bff;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
 }
 
 .animal-actions a:hover {
-    text-decoration: underline;
+    text-decoration:color-mix(in hsl shorter hue, color percentage, color percentage);
+}
+
+.animal-actions{
+    color: grey;
+    width: 40px;
+    position:sticky;
 }

@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Animal, Accidents
+from .models import Animal, Accidents, Visite
 
 def login_view(request):
     if request.method == "POST":
@@ -42,6 +42,11 @@ def accueil(request):
 def dashboard(request):
     animals = Animal.objects.all()
     return render(request, 'animaux.html', {"animals": animals})
+
+@login_required
+def visites(request):
+    visites = Visite.objects.all()
+    return render(request, 'visites.html', {"visites": visites})
 
 
 @login_required

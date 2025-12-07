@@ -1,32 +1,48 @@
-{% extends "zoo_app/base.html" %}
-{% block content %}
-{% csrf_token %}
+<!DOCTYPE html>
+<html lang="fr">
+
 <head>
-    <title>connexion</title>
-    <link rel ="stylesheet" href="style_connexion.css">
+    <meta charset="UTF-8">
+    <title>Zmanager | Visites 🐵</title>
+    <link rel ="stylesheet" href="/static/style_base.css">
 </head>
 
-<body>
-    
-    <img class="image-fond" src="IFC.JPG" alt="image pour le fond">
+<header class="entete-fixe">
 
+    <a href="/profil"><img src="/media/users/{{ user.username }}.png" alt="Photo de profil" class="profile"></a>
+    <img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo">
     
-    <div class="formulaire">
-        <img class="Tortue" src="Tortue.jpg" alt="image de la tortue">
-        
-        <form method="post">
-            <label for="ID">Identifiant</label>
-            <input type="text" id="ID" name="ID" placeholder="Moi">
-            
-            <label for="MDP">Mot De Passe</label>
-            <input type="MDP" id="MDP" name="MDP" placeholder="********">
-            
-            <button type="submit">Connexion</button>
-        </form>
+    <div class="message-bienvenue">
+        Bonjour {{ user.username }} ! |
+        <a href="{% url 'logout' %}">Déconnexion</a> |
     </div>
 
-    
+    <div class="Animaux">
+        <button onclick='location.href="/animaux"'>Animaux</button>
+    </div>
 
+    <div class="Visite">
+        <button onclick='location.href="/visites"'>Visites</button>
+    </div>
+
+    <div class="Soigneur">
+                <button onclick='location.href="/soigneurs"'>Soigneurs</button>
+    </div>
+</header>
+
+
+<body>
+<table>
+    {{for a in visites}}
+        <tr>
+            <th>{{a.Prenom}}</th>
+            <th>{{a.DescriptionVisite}}</th>
+            <th>{{a.Pathologie}}</th>
+            <th>{{a.DateDernierVaccin}}, ID : {{a.IdVaccin}}</th>
+            <th>{{a.DateDerniereVisite}}</th>
+
+        </tr>
+    {{endfor}}
+</table>
 </body>
-
-{% endblock %}
+</html>
