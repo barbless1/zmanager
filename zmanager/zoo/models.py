@@ -9,7 +9,7 @@ class Animal(models.Model):
     Age = models.IntegerField()
     RegimeAlimentaire = models.CharField(max_length=200, default='Undefined')
     class Meta:
-        db_table = "zoo_animal"  # IMPORTANT : correspond au nom exact de la table, ça générait une erreur sinon
+        db_table = "zoo_animal"  
 class Soigneur(models.Model): 
     Nom = models.CharField(max_length=200, default='tartempion')
     Prenom = models.CharField(max_length=200, default='tartempion')
