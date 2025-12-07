@@ -13,8 +13,7 @@
     <img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo">
     
     <div class="message-bienvenue">
-        Bonjour {{ first_name }} ! |
-        <a href="">Administration</a> |
+        Bonjour {{ user.first_name}} ! |
         <a href="{% url 'logout' %}">Déconnexion</a> |
     </div>
 
