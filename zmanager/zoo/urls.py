@@ -8,9 +8,9 @@ urlpatterns = [
     path('dashboard/',views.accueil, name='dashboard'),
     path('animaux/',views.dashboard, name='animaux'),
     path('profil/',views.dashboard, name='profil'),
-    path('visites/',views.visites, name='visites'),
+    path('visites/',views.dashboard, name='visites'),
     path('soigneurs/',views.dashboard, name='soigneurs'),
-
+    path("animal/edit/<int:animal_id>/", views.animal_edit, name="animal_edit"),
 ]
 
 urlpatterns += [
