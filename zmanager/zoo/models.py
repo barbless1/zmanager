@@ -12,7 +12,8 @@ class Animal(models.Model):   #Le premier modèle défini est celui de l'animal.
     DateDepartZoo = models.DateField(default=1970-1-1)
     Age = models.IntegerField()
     RegimeAlimentaire = models.CharField(max_length=200, default='Undefined')
-
+    class Meta:
+        db_table = "zoo_animal"  # IMPORTANT : correspond au nom exact de la table, ça générait une erreur sinon
 class Soigneur(models.Model): 
     Nom = models.CharField(max_length=200, default='tartempion')
     Prenom = models.CharField(max_length=200, default='tartempion')
