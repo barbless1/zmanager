@@ -1,0 +1,32 @@
+{% extends "zoo_app/base.html" %}
+{% block content %}
+{% csrf_token %}
+<head>
+    <title>connexion</title>
+    <link rel ="stylesheet" href="style_connexion.css">
+</head>
+
+<body>
+    
+    <img class="image-fond" src="IFC.JPG" alt="image pour le fond">
+
+    
+    <div class="formulaire">
+        <img class="Tortue" src="Tortue.jpg" alt="image de la tortue">
+        
+        <form method="post">
+            <label for="ID">Identifiant</label>
+            <input type="text" id="ID" name="ID" placeholder="Moi">
+            
+            <label for="MDP">Mot De Passe</label>
+            <input type="MDP" id="MDP" name="MDP" placeholder="********">
+            
+            <button type="submit">Connexion</button>
+        </form>
+    </div>
+
+    
+
+</body>
+
+{% endblock %}

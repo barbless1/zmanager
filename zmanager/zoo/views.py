@@ -10,16 +10,22 @@ def login_view(request):
         if user:
             login(request, user)
             return redirect('dashboard')
-    return render(request, 'accueil.html')
+    return render(request, 'index.html')
 
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 @login_required
+def accueil(request):
+    animals = Animal.objects.all()
+    return render(request, 'dashboard.html'), {"animals": animals}
+
+@login_required
 def dashboard(request):
     animals = Animal.objects.all()
     return render(request, 'animaux.html', {"animals": animals})
+
 
 @login_required
 def add_animal(request):

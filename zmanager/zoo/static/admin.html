@@ -1,0 +1,47 @@
+{% extends "zoo_app/base.html" %}
+{% block content %}
+<h2>Gestion des utilisateurs</h2>
+
+<table border="1">
+    <tr>
+        <th>Nom d'utilisateur</th>
+        <th>Rôle</th>
+        <th>Actions</th>
+    </tr>
+    {% for soigneur in soigneurs %}
+    <tr>
+        <td>{{ soigneur.username }}</td>
+        <td>
+            {% if soigneur.role == 0 %} Visiteur
+            {% elif soigneur.role == 1 %} Soigneur
+            {% elif soigneur.role == 2 %} Administrateur
+            {% endif %}
+        </td>
+        <td>
+            <!-- Bouton Supprimer -->
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="delete_id" value="{{ soigneur.id }}">
+                <button type="submit" onclick="return confirm('Supprimer {{ soigneur.username }} ?');">
+                    Supprimer
+                </button>
+            </form>
+
+            <!-- Bouton Modifier -->
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="edit_id" value="{{ soigneur.id }}">
+                <button type="submit">Modifier</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Créer / Modifier un utilisateur</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+{% endblock %}

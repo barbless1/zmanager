@@ -1,0 +1,26 @@
+<!--La page de connexion-->
+{% csrf_token %}
+<head>
+    <title>Page de connexion 🐵</title>
+    <link rel ="stylesheet" href="/static/style_connexion.css">
+</head>
+
+<body>
+    <img class="image-fond" src="/media/fond.jpg" alt="image pour le fond">
+    <div class="formulaire">
+        <img class="Tortue" src="/media/tortue.jpg" alt="image de la tortue">
+        <!--Formulaire d'envoi du mot de passe (ne pas enlever)-->
+        <form method="POST">
+            {% csrf_token %}
+            <label for="ID">Identifiant</label>
+            <input type="text" id="ID" name="username" placeholder="Nom d'utilisateur" required><br>
+            <label for="MDP">Mot De Passe</label>
+            <input type="password" id="MDP" name="password" placeholder="motdepassesécurisé" required><br>
+            <button type="submit">Connexion</button>
+        </form>
+    </div>
+</body>
+
+
+
+

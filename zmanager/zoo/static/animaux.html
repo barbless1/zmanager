@@ -1,17 +1,27 @@
-<h2>Animals</h2>
-<a href="{% url 'add_animal' %}">Add new animal</a><br><br>
+{% block content %}
+<h2>Recherche d'animaux</h2>
+<head></head>
+<form method="get">
+    <input type="text" name="q" placeholder="Nom de l'animal" value="{{ request.GET.q }}">
+    <button type="submit">Rechercher</button>
+</form>
 
-<table border="1">
-<tr><th>Name</th><th>Species</th><th>Age</th><th>Actions</th></tr>
-{% for a in animals %}
-<tr>
-<td>{{ a.name }}</td>
-<td>{{ a.species }}</td>
-<td>{{ a.age }}</td>
-<td>
- <a href="{% url 'edit_animal' a.id %}">Edit</a>
- <a href="{% url 'delete_animal' a.id %}">Delete</a>
-</td>
-</tr>
-{% endfor %}
-</table>
+{% if animals %}
+    <h3>Résultats :</h3>
+    <ul>
+        {% for a in animals %}
+            <li>
+                    {{ a.NomAnimal }} ({{ a.Espece }}, {{ a.Age }} ans)
+                    <a href="{% url 'edit_animal' a.id %}">Edit</a>
+                    <a href="{% url 'delete_animal' a.id %}">Delete</a>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun résultat trouvé.</p>
+{% endif %}
+{% endblock %}
+
+
+

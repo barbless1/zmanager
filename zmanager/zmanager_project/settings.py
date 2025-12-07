@@ -63,7 +63,7 @@ WSGI_APPLICATION = 'zmanager_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'zmanager',
+        'NAME': 'zoo',
         'USER': 'root',
         'PASSWORD':'zmanager123',
         'HOST': '172.21.0.3',
@@ -129,3 +129,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR / 'zoo/static/media'
+
+
+

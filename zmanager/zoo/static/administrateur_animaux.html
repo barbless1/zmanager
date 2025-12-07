@@ -1,6 +1,6 @@
 <form method="POST">
     {% csrf_token %}
-    <input type="text" name="name" value="{{ animal.name|default:'' }}" placeholder="Name"><br>
+    <input type="text" name="name" value="{{ animal.NomAnimal|default:'' }}" placeholder="Name"><br>
     <input type="text" name="species" value="{{ animal.species|default:'' }}" placeholder="Species"><br>
     <input type="number" name="age" value="{{ animal.age|default:'' }}" placeholder="Age"><br>
     <button type="submit">Save</button>
