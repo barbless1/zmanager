@@ -1,8 +1,10 @@
 #Ce fichier permet de changer les pages accessibles en fonction de l'utilisateur connecté.
 from django.shortcuts import render, redirect
+from django.utils import timezone
+from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Animal
+from .models import Animal, Accidents
 
 def login_view(request):
     if request.method == "POST":
@@ -16,10 +18,25 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
+
 @login_required
 def accueil(request):
-    animals = Animal.objects.all()
-    return render(request, 'dashboard.html'), {"animals": animals}
+    animal_count = Animal.objects.count()
+    accidents = Accidents.objects.all()
+
+    for accident in accidents:
+        # Convert DateAccident (date) to datetime at midnight local time
+        accident_datetime = datetime.combine(accident.DateAccident, datetime.min.time(), tzinfo=timezone.get_current_timezone())
+        accident.since = timezone.now() - accident_datetime
+
+    context = {
+        'animal_count': animal_count,
+        'accidents': accidents
+    }
+
+    return render(request, 'dashboard.html', context)
+
+
 
 @login_required
 def dashboard(request):

@@ -1,27 +1,63 @@
-{% block content %}
-<h2>Recherche d'animaux</h2>
-<head></head>
-<form method="get">
-    <input type="text" name="q" placeholder="Nom de l'animal" value="{{ request.GET.q }}">
-    <button type="submit">Rechercher</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Zmanager | Animaux 🐵</title>
+    <link rel ="stylesheet" href="/static/style_base.css">
 
-{% if animals %}
-    <h3>Résultats :</h3>
-    <ul>
-        {% for a in animals %}
-            <li>
-                    {{ a.NomAnimal }} ({{ a.Espece }}, {{ a.Age }} ans)
-                    <a href="{% url 'edit_animal' a.id %}">Edit</a>
-                    <a href="{% url 'delete_animal' a.id %}">Delete</a>
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Aucun résultat trouvé.</p>
-{% endif %}
-{% endblock %}
+</head>
+
+<header class="entete-fixe">
+
+    <a href="/profil"><img src="/media/users/{{ user.username }}.png" alt="Photo de profil" class="profile"></a>
+    <img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo">
+    
+    <div class="message-bienvenue">
+        Bonjour {{ user.username }} ! |
+        <a href="">Administration</a> |
+        <a href="{% url 'logout' %}">Déconnexion</a> |
+    </div>
 
 
+    <div class="Animaux">
+        <button onclick='location.href="/animaux"'>Animaux</button>
+    </div>
 
+    <div class="Visite">
+        <button onclick='location.href="/visites"'>Visites</button>
+    </div>
+
+    <div class="Soigneur">
+                <button onclick='location.href="/soigneurs"'>Soigneurs</button>
+    </div>
+</header>
+
+<body background="/media/tortue.jpg">
+
+
+<div class="animal-container">
+    {% for a in animals %}
+    <div class="animal-card">
+
+        <div class="animal-image">
+            <img src="/media/{{a.NomAnimal}}.png" alt="{{ a.NomAnimal }}">
+        </div>
+   
+        <div class="animal-info">
+            <h3>{{ a.NomAnimal }}</h3>
+            <p>{{ a.Espece }}, {{ a.Age }} ans</p>
+            <div class="animal-actions">
+                <a href="{% url 'edit_animal' a.id %}">Edit</a>
+                <a href="{% url 'delete_animal' a.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+<body>
+</html>
