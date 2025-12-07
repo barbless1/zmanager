@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zmanager | {{ animal.NomAnimal }}</title>
+    <link rel="stylesheet" href="/static/style_base.css">
+</head>
+
+<header class="entete-fixe">
+    <a href="/profil"><img src="/media/users/{{ user.first_name }}.png" class="profile"></a>
+    <img src="/media/logo.png" class="logo-zoo">
+
+    <div class="message-bienvenue">
+        Bonjour {{ user.first_name }} ! |
+        <a href="{% url 'admin:index' %}">Administration</a> |
+        <a href="{% url 'logout' %}">Déconnexion</a> |
+    </div>
+
+    <div class="Animaux">
+        <button onclick='location.href="/animaux"'>Animaux</button>
+    </div>
+</header>
+
+<body background="/media/tortue.jpg">
+
+    <div class="info">
+        <h1>Informations sur {{ animal.NomAnimal }}</h1>
+
+        <p><strong>Nom :</strong> {{ animal.NomAnimal }}</p>
+        <p><strong>Espèce :</strong> {{ animal.Espece }}</p>
+        <p><strong>Date de naissance :</strong> {{ animal.DateNaissance }}</p>
+        <p><strong>Date d'arrivée au zoo :</strong> {{ animal.DateArriveeZoo }}</p>
+
+        {% if animal.DateDepartZoo %}
+            <p><strong>Date de départ :</strong> {{ animal.DateDepartZoo }}</p>
+        {% else %}
+            <p><strong>Date de départ :</strong> Toujours au zoo</p>
+        {% endif %}
+
+        <p><strong>Âge :</strong> {{ animal.Age }} ans</p>
+        <p><strong>Régime alimentaire :</strong> {{ animal.RegimeAlimentaire }}</p>
+
+        <br>
+        <button onclick="history.back()">Retour</button>
+    </div>
+
+</body>
+</html>
