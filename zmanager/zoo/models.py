@@ -10,13 +10,14 @@ class Animal(models.Model):
     RegimeAlimentaire = models.CharField(max_length=200, default='Undefined')
     class Meta:
         db_table = "zoo_animal"  
+        
 class Soigneur(models.Model): 
     Nom = models.CharField(max_length=200, default='tartempion')
     Prenom = models.CharField(max_length=200, default='tartempion')
-    Role = models.IntegerField(default=0)
+    Specialisation = models.CharField(max_length=200, default='tartempion')
+    Age = models.IntegerField(default='0')
 
 class Vaccin(models.Model):
-    IdVaccin = models.BigIntegerField(default='0000')
     NomVaccin = models.CharField(max_length=200)
 
 class Visite(models.Model):
@@ -26,21 +27,8 @@ class Visite(models.Model):
     Pathologie = models.CharField(max_length=32, null=True, blank=True)
     DescriptionVisite = models.CharField(max_length=255, null=True, blank=True)
     
-    IdVaccin = models.ForeignKey(
-        Vaccin,
-        on_delete=models.SET_NULL,
-        null=True,
-        db_column="IdVaccin_id"
-    )
-
-    Prenom = models.ForeignKey(
-        Soigneur,
-        on_delete=models.CASCADE,
-        db_column="Prenom_id"
-    )
-
-    class Meta:
-        db_table = "zoo_visite"
+    Animal = models.ForeignKey('Animal', on_delete=models.CASCADE)
+    Vaccin = models.ForeignKey('Vaccin', on_delete=models.SET_NULL, null=True, blank=True)
 
 class Accidents(models.Model):
     DateAccident = models.DateField(default='1970-01-01')

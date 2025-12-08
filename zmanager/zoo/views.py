@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Animal, Accidents, Visite, Vaccin
+from .models import Animal, Accidents, Visite, Vaccin, Soigneur
 from django.shortcuts import render, get_object_or_404
 
 def login_view(request):
@@ -119,3 +119,13 @@ def add_visite(request):
 def visites_list(request):
     visites = Visite.objects.select_related("IdVaccin", "Prenom").all()
     return render(request, "visites.html", {"visites": visites})
+def soigneurs(request):
+    soigneur = Soigneur.objects.all()
+    return render(request, 'soigneurs.html', {"soigneur": soigneur})
+
+
+@login_required
+def soigneur_detail(request, id):
+    soigneur = get_object_or_404(Soigneur, id=id)
+    return render(request, 'soigneur_detail.html', {'soigneur': soigneur})
+

@@ -37,12 +37,9 @@
 
 <body background="/media/tortue.jpg">
 
-    <h1 style="margin-top: 150px; text-align:center;">Liste des visites</h1>
-    <div style="text-align:center;">
-        <button onclick='location.href="/visites/add/"'>Ajouter une visite</button>
-    </div>
-        <br>
-    <table border="1" class="table-visites" style="margin:auto; background:white; padding:10px;">
+<body>
+<table>
+    {{% for a in visites }}
         <tr>
             <th>Animal</th>
             <th>ID</th>
