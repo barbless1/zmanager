@@ -43,12 +43,12 @@ def accueil(request):
 def dashboard(request):
     animals = Animal.objects.all()
     return render(request, 'animaux.html', {"animals": animals})
-
+'''
 @login_required
 def visites(request):
     visites = Visite.objects.all()
     return render(request, 'visites.html', {"visites": visites})
-
+'''
 
 @login_required
 def add_animal(request):
@@ -83,6 +83,42 @@ def animal_edit(request, animal_id):
     return render(request, "animal_edit.html", {"animal": animal})
 
 @login_required
+def add_visite(request):
+    if request.method == "POST":
+        DateDerniereVisite = request.POST.get("DateDerniereVisite")
+        DateDernierVaccin = request.POST.get("DateDernierVaccin")
+        DateDerniereEchographie = request.POST.get("DateDerniereEchographie")
+        Pathologie = request.POST.get("Pathologie")
+        DescriptionVisite = request.POST.get("DescriptionVisite")
+        IdVaccin_id = request.POST.get("IdVaccin")
+        Prenom_id = request.POST.get("Prenom")
+        Animal_id = request.POST.get("Animal")
+        Visite.objects.create(
+            DateDerniereVisite=DateDerniereVisite,
+            DateDernierVaccin=DateDernierVaccin,
+            DateDerniereEchographie=DateDerniereEchographie,
+            Pathologie=Pathologie,
+            DescriptionVisite=DescriptionVisite,
+            IdVaccin_id=IdVaccin_id if IdVaccin_id else None,
+            Prenom_id=Prenom_id,
+            Animal_id=Animal_id
+    )
+
+        return redirect("/visites")
+
+    vaccins = Vaccin.objects.all()
+    soigneurs = Soigneur.objects.all()
+    animaux = Animal.objects.all()
+    return render(request, "add_visite.html", {
+        "vaccins": vaccins,
+        "soigneurs": soigneurs,
+        "animaux": animaux,
+    })
+
+@login_required
+def visites_list(request):
+    visites = Visite.objects.select_related("IdVaccin", "Prenom").all()
+    return render(request, "visites.html", {"visites": visites})
 def soigneurs(request):
     soigneur = Soigneur.objects.all()
     return render(request, 'soigneurs.html', {"soigneur": soigneur})

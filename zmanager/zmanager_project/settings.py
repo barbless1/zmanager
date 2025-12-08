@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ztpq!0if9_w9d12p)m$=9r5)xz9t$$t%@bpuk!&xzkjg$1y+ih
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.1.69' #Change this value to your server adress
+    'localhost' #Change this value to your server adress
 ]
 
 
@@ -63,11 +63,15 @@ WSGI_APPLICATION = 'zmanager_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+<<<<<<< HEAD
         'NAME': 'zoo',
+=======
+        'NAME': 'data_zoo', #Change this value to your database name !!
+>>>>>>> ec0d6cdd84cfd2bd164feaa4d2606c0740889f41
         'USER': 'root',
-        'PASSWORD':'zmanager123',
-        'HOST': '172.21.0.3',
-        'PORT': '3306',
+        'PASSWORD':'', #Change this value to your database password
+        'HOST': 'localhost', #Change this value to your database server adress
+        'PORT': '3306', #Change this value to your database port
     }
 }
 
