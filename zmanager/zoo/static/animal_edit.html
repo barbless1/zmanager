@@ -9,11 +9,10 @@
 
 <header class="entete-fixe">
     <a href="/profil"><img src="/media/users/{{ user.first_name }}.png" class="profile"></a>
-    <img src="/media/logo.png" class="logo-zoo">
+    <a href="/dashboard"><img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo"></a>
 
     <div class="message-bienvenue">
         Bonjour {{ user.first_name }} ! |
-        <a href="{% url 'admin:index' %}">Administration</a> |
         <a href="{% url 'logout' %}">Déconnexion</a> |
     </div>
 
