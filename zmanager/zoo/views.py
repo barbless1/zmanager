@@ -37,20 +37,26 @@ def accueil(request):
 
     return render(request, 'dashboard.html', context)
 
-
-
 @login_required
 def dashboard(request):
     animals = Animal.objects.all()
-    return render(request, 'animaux.html', {
-        "animals": animals,
-        "is_admin": request.user.is_superuser  # IMPORTANT
-    })
+    context = {"animals": animals, "is_admin": request.user.is_superuser}
+    return render(request, "animaux.html", context)
+
 
 @login_required
 def visites(request):
-    visites = Visite.objects.all()
+    Visite = Visite.objects.all()
     return render(request, 'visites.html', {"visites": visites})
+
+@login_required
+def dashboard(request):
+    if not request.user.is_superuser:
+        # Redirect non-superuser to a different page
+        return redirect('accueil')   # or another template
+
+    animals = Animal.objects.all()
+    return render(request, 'animaux.html', {"animals": animals})
 
 
 @login_required

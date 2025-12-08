@@ -24,7 +24,7 @@
     </div>
 
     <div class="Visite">
-        <button onclick='location.href="/visites"'>Visites</button>
+        <button onclick='location.href="/visites"'>Visites</button> 
     </div>
 
     <div class="Soigneur">
@@ -36,9 +36,11 @@
 <body background="/media/tortue.jpg">
 
     <h1 style="margin-top: 150px; text-align:center;">Liste des visites</h1>
-    <div style="text-align:center;">
-        <button onclick='location.href="/visites/add/"'>Ajouter une visite</button>
-    </div>
+    {% if is_admin %}
+    <button onclick='location.href="/visites/add/"'>Ajouter une visite</button>
+    {% endif %}
+
+
         <br>
     <table border="1" class="table-visites" style="margin:auto; background:white; padding:10px;">
         <tr>
