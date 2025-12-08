@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Animal, Accidents, Visite
+from .models import Animal, Accidents, Visite, Vaccin
 from django.shortcuts import render, get_object_or_404
 
 def login_view(request):
