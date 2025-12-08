@@ -42,13 +42,16 @@ def accueil(request):
 @login_required
 def dashboard(request):
     animals = Animal.objects.all()
-    return render(request, 'animaux.html', {"animals": animals})
-'''
+    return render(request, 'animaux.html', {
+        "animals": animals,
+        "is_admin": request.user.is_superuser  # IMPORTANT
+    })
+
 @login_required
 def visites(request):
     visites = Visite.objects.all()
     return render(request, 'visites.html', {"visites": visites})
-'''
+
 
 @login_required
 def add_animal(request):

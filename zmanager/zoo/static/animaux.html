@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Zmanager | Animaux 🐵</title>
-    <link rel ="stylesheet" href="/static/style_base.css">
-
+    <link rel="stylesheet" href="{% static 'style_base.css' %}">
 </head>
 
-<header class="entete-fixe">
+<body background="/media/tortue.jpg">
 
+<header class="entete-fixe">
     <a href="/profil"><img src="/media/users/{{ user.first_name }}.png" alt="Photo de profil" class="profile"></a>
     <a href="/dashboard"><img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo"></a>
     
@@ -18,22 +18,16 @@
         <a href="{% url 'logout' %}">Déconnexion</a> |
     </div>
 
-
     <div class="Animaux">
         <button onclick='location.href="/animaux"'>Animaux</button>
     </div>
-
     <div class="Visite">
         <button onclick='location.href="/visites"'>Visites</button>
     </div>
-
     <div class="Soigneur">
-                <button onclick='location.href="/soigneurs"'>Soigneurs</button>
+        <button onclick='location.href="/soigneurs"'>Soigneurs</button>
     </div>
 </header>
-
-<body background="/media/tortue.jpg">
-
 
 <div class="animal-container">
     {% for a in animals %}
@@ -42,21 +36,21 @@
         <div class="animal-image">
             <img src="/media/{{a.NomAnimal}}.png" alt="{{ a.NomAnimal }}">
         </div>
-   
+
         <div class="animal-info">
             <h3>{{ a.NomAnimal }}</h3>
             <p>{{ a.Espece }}, {{ a.Age }} ans</p>
+
+            {% if is_admin %}
             <div class="animal-actions">
                 <a href="{% url 'edit_animal' a.id %}" class="edit">Plus d'informations</a>
-                <a href="{% url 'delete_animal' a.id %}" class="delete">Supprimer</a> 
+                <a href="{% url 'delete_animal' a.id %}" class="delete">Supprimer</a>
             </div>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
 </div>
 
-
-
-
-<body>
+</body>
 </html>
