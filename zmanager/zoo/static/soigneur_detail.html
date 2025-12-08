@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Zmanager | Soigneurs 🐵</title>
+    <title>Zmanager | {{soigneur.Nom}} {{ soigneur.Prenom}} 🐵</title>
     <link rel ="stylesheet" href="/static/style_base.css">
 </head>
 
@@ -17,29 +17,18 @@
         <a href="{% url 'logout' %}">Déconnexion</a> |
     </div>
 
-
-    <div class="Animaux">
-        <button onclick='location.href="/animaux"'>Animaux</button>
-    </div>
-
-    <div class="Visite">
-        <button onclick='location.href="/visites"'>Visites</button>
-    </div>
-
     <div class="Soigneur">
                 <button onclick='location.href="/soigneurs"'>Soigneurs</button>
     </div>
 </header>
 
 <body background="/media/tortue.jpg">
-    <div class="info">
-        <div class="dropdown-container">
-    {% for s in soigneur %}
-        <a class="dropdown-item" href="{% url 'soigneur_detail' s.id %}">
-            {{ s.Nom }} {{ s.Prenom }}
-        </a>
-    {% endfor %}
-        </div>
+    <div class="info-soigneur">
+        <h2>{{ soigneur.Prenom }} {{ soigneur.Nom }}</h2>
+        <img src="/media/soigneurs/{{soigneur.id}}.png" alt="soigneur-photo">
+        <p>Spécialisation : {{soigneur.Specialisation}}</p>
+        <p>Âge : {{soigneur.Age}}</p>
     </div>
+
 </body>
 </html>
