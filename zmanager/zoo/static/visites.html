@@ -17,7 +17,6 @@
 
     <div class="message-bienvenue">
         Bonjour {{ user.first_name }} ! |
-        <a href="{% url 'admin:index' %}">Administration</a> |
         <a href="{% url 'logout' %}">Déconnexion</a> |
     </div>
 
@@ -37,8 +36,12 @@
 
 <body background="/media/tortue.jpg">
 
-<body>
-<table>
+    <h1 style="margin-top: 150px; text-align:center;">Liste des visites</h1>
+    <div style="text-align:center;">
+        <button onclick='location.href="/visites/add/"'>Ajouter une visite</button>
+    </div>
+        <br>
+    <table border="1" class="table-visites" style="margin:auto; background:white; padding:10px;">
         <tr>
             <th>Animal</th>
             <th>ID</th>
@@ -57,13 +60,21 @@
             <td>{{ v.IdVisite }}</td>
             <td>{{ v.DateDerniereVisite }}</td>
             <td>{{ v.DateDernierVaccin }}</td>
+            <td>{{ v.DateDerniereEchographie }}</td>
             <td>{{ v.Pathologie }}</td>
             <td>{{ v.DescriptionVisite }}</td>
+
+            <td>
+                {% if v.IdVaccin %}
+                    {{ v.IdVaccin.NomVaccin }}
+                {% else %}
+                    Aucun
+                {% endif %}
+            </td>
 
             <td>{{ v.Prenom.Prenom }}</td>
         </tr>
         {% endfor %}
-
     </table>
 
 </body>
