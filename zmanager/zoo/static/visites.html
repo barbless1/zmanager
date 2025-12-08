@@ -9,11 +9,10 @@
 
 <header class="entete-fixe">
 
-    <a href="/profil">
-        <img src="/media/users/{{ user.first_name }}.png" alt="Photo de profil" class="profile">
-    </a>
 
-    <img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo">
+<img src="/media/users/{{ user.first_name }}.png" alt="Photo de profil" class="profile">
+<a href="/dashboard"><img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo"></a>
+    
 
     <div class="message-bienvenue">
         Bonjour {{ user.first_name }} ! |
@@ -44,29 +43,21 @@
     <table border="1" class="table-visites" style="margin:auto; background:white; padding:10px;">
         <tr>
             <th>Animal</th>
-            <th>ID</th>
             <th>Date visite</th>
             <th>Dernier vaccin</th>
-            <th>Dernière échographie</th>
             <th>Pathologie</th>
             <th>Description</th>
-            <th>Vaccin</th>
-            <th>Soigneur</th>
         </tr>
 
         {% for v in visites %}
         <tr>
             <td>{{ v.Animal.id }} - {{ v.Animal.NomAnimal }}</td>
-            <td>{{ v.IdVisite }}</td>
             <td>{{ v.DateDerniereVisite }}</td> 
             <td>{{ v.DateDernierVaccin }}</td>
-            <td>{{ v.DateDerniereEchographie }}</td>
             <td>{{ v.Pathologie }}</td>
             <td>{{ v.DescriptionVisite }}</td>
-            <td>{{ v.Prenom.Prenom }}</td>
         </tr>
         {% endfor %}
     </table>
-<button onclick="location.href='/visites/add'">Ajouter une visite</button>
 </body>
 </html>

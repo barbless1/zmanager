@@ -47,7 +47,7 @@
             <h3>{{ a.NomAnimal }}</h3>
             <p>{{ a.Espece }}, {{ a.Age }} ans</p>
             <div class="animal-actions">
-                <a href="{% url 'edit_animal' a.id %}" class="edit">Modifier</a>
+                <a href="{% url 'edit_animal' a.id %}" class="edit">Plus d'informations</a>
                 <a href="{% url 'delete_animal' a.id %}" class="delete">Supprimer</a> 
             </div>
         </div>

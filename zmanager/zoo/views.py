@@ -87,11 +87,8 @@ def add_visite(request):
     if request.method == "POST":
         DateDerniereVisite = request.POST.get("DateDerniereVisite")
         DateDernierVaccin = request.POST.get("DateDernierVaccin")
-        DateDerniereEchographie = request.POST.get("DateDerniereEchographie")
         Pathologie = request.POST.get("Pathologie")
         DescriptionVisite = request.POST.get("DescriptionVisite")
-        IdVaccin_id = request.POST.get("IdVaccin")
-        Prenom_id = request.POST.get("Prenom")
         Animal_id = request.POST.get("Animal")
         Visite.objects.create(
             DateDerniereVisite=DateDerniereVisite,
@@ -103,11 +100,9 @@ def add_visite(request):
 
         return redirect("/visites")
 
-    vaccins = Vaccin.objects.all()
     soigneurs = Soigneur.objects.all()
     animaux = Animal.objects.all()
     return render(request, "add_visite.html", {
-        "vaccins": vaccins,
         "soigneurs": soigneurs,
         "animaux": animaux,
     })

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ztpq!0if9_w9d12p)m$=9r5)xz9t$$t%@bpuk!&xzkjg$1y+ih
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.1.69' #Change this value to your server adress
+    '192.168.1.69'
 ]
 
 

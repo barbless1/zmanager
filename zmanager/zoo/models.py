@@ -19,13 +19,12 @@ class Soigneur(models.Model):
 
 
 class Visite(models.Model):
-    IdVisite = models.AutoField(primary_key=True)
     DateDerniereVisite = models.DateField(null=True, blank=True)
     DateDernierVaccin = models.DateField(null=True, blank=True)
     Pathologie = models.CharField(max_length=32, null=True, blank=True)
     DescriptionVisite = models.CharField(max_length=255, null=True, blank=True)
+    Soigneur = models.CharField(max_length=32, default='Soigneur')
     Animal = models.ForeignKey('Animal', on_delete=models.CASCADE)
-
 
 class Accidents(models.Model):
     DateAccident = models.DateField(default='1970-01-01')

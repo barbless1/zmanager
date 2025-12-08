@@ -9,11 +9,9 @@
 
 <header class="entete-fixe">
 
-    <a href="/profil">
-        <img src="/media/users/{{ user.first_name }}.png" alt="Photo de profil" class="profile">
-    </a>
 
-    <img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo">
+<img src="/media/users/{{ user.first_name }}.png" alt="Photo de profil" class="profile">
+<a href="/dashboard"><img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo"></a>
 
     <div class="message-bienvenue">
         Bonjour {{ user.first_name }} ! |
@@ -53,23 +51,10 @@
         <label>Description :</label>
         <textarea name="DescriptionVisite" rows="4"></textarea><br><br>
 
-        <label>Vaccin :</label>
-        <select name="IdVaccin">
-            <option value="">Aucun</option>
-            {% for v in vaccins %}
-                <option value="{{ v.id }}">{{ v.NomVaccin }}</option>
-            {% endfor %}
-        </select><br><br>
-
-        <label>Soigneur :</label>
-        <select name="Prenom" required>
-            {% for s in soigneurs %}
-                <option value="{{ s.id }}">{{ s.Prenom }} {{ s.Nom }}</option>
-            {% endfor %}
-        </select><br><br>
-
         <button type="submit">Ajouter la visite</button>
     </form>
 
+    
 </body>
 </html>
+
