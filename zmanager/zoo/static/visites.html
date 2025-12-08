@@ -3,17 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Zmanager | Visites 🐵</title>
-    <link rel ="stylesheet" href="/static/style_base.css">
+    <title>Zmanager | Visites</title>
+    <link rel="stylesheet" href="/static/style_base.css">
 </head>
 
 <header class="entete-fixe">
 
-    <a href="/profil"><img src="/media/users/{{ user.username }}.png" alt="Photo de profil" class="profile"></a>
-    <a href="/dashboard"><img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo"></a>
-    
+    <a href="/profil">
+        <img src="/media/users/{{ user.first_name }}.png" alt="Photo de profil" class="profile">
+    </a>
+
+    <img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo">
+
     <div class="message-bienvenue">
         Bonjour {{ user.first_name }} ! |
+        <a href="{% url 'admin:index' %}">Administration</a> |
         <a href="{% url 'logout' %}">Déconnexion</a> |
     </div>
 
@@ -26,23 +30,53 @@
     </div>
 
     <div class="Soigneur">
-                <button onclick='location.href="/soigneurs"'>Soigneurs</button>
+        <button onclick='location.href="/soigneurs"'>Soigneurs</button>
     </div>
+
 </header>
 
+<body background="/media/tortue.jpg">
 
-<body>
-<table>
-    {{for a in visites}}
+    <h1 style="margin-top: 150px; text-align:center;">Liste des visites</h1>
+    <div style="text-align:center;">
+        <button onclick='location.href="/visites/add/"'>Ajouter une visite</button>
+    </div>
+        <br>
+    <table border="1" class="table-visites" style="margin:auto; background:white; padding:10px;">
         <tr>
-            <th>{{a.Prenom}}</th>
-            <th>{{a.DescriptionVisite}}</th>
-            <th>{{a.Pathologie}}</th>
-            <th>{{a.DateDernierVaccin}}, ID : {{a.IdVaccin}}</th>
-            <th>{{a.DateDerniereVisite}}</th>
-
+            <th>Animal</th>
+            <th>ID</th>
+            <th>Date visite</th>
+            <th>Dernier vaccin</th>
+            <th>Dernière échographie</th>
+            <th>Pathologie</th>
+            <th>Description</th>
+            <th>Vaccin</th>
+            <th>Soigneur</th>
         </tr>
-    {{endfor}}
-</table>
+
+        {% for v in visites %}
+        <tr>
+            <td>{{ v.Animal.id }} - {{ v.Animal.NomAnimal }}</td>
+            <td>{{ v.IdVisite }}</td>
+            <td>{{ v.DateDerniereVisite }}</td>
+            <td>{{ v.DateDernierVaccin }}</td>
+            <td>{{ v.DateDerniereEchographie }}</td>
+            <td>{{ v.Pathologie }}</td>
+            <td>{{ v.DescriptionVisite }}</td>
+
+            <td>
+                {% if v.IdVaccin %}
+                    {{ v.IdVaccin.NomVaccin }}
+                {% else %}
+                    Aucun
+                {% endif %}
+            </td>
+
+            <td>{{ v.Prenom.Prenom }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
 </body>
 </html>

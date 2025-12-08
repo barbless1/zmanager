@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zmanager | Ajouter une visite</title>
+    <link rel="stylesheet" href="/static/style_base.css">
+</head>
+
+<header class="entete-fixe">
+
+    <a href="/profil">
+        <img src="/media/users/{{ user.first_name }}.png" alt="Photo de profil" class="profile">
+    </a>
+
+    <img src="/media/logo.png" alt="Logo de votre zoo" class="logo-zoo">
+
+    <div class="message-bienvenue">
+        Bonjour {{ user.first_name }} ! |
+        <a href="{% url 'admin:index' %}">Administration</a> |
+        <a href="{% url 'logout' %}">Déconnexion</a> |
+    </div>
+
+    <div class="Animaux">
+        <button onclick='location.href="/animaux"'>Animaux</button>
+    </div>
+
+    <div class="Visite">
+        <button onclick='location.href="/visites"'>Visites</button>
+    </div>
+
+    <div class="Soigneur">
+        <button onclick='location.href="/soigneurs"'>Soigneurs</button>
+    </div>
+
+</header>
+
+<body background="/media/tortue.jpg">
+
+    <h1 style="margin-top:150px; text-align:center;">Ajouter une visite</h1>
+
+    <form method="POST" style="width:50%; margin:auto; background:white; padding:20px; border-radius:10px;">
+        {% csrf_token %}
+
+
+        <label>Animal :</label>
+        <select name="Animal" required>
+            {% for a in animaux %}
+                 <option value="{{ a.id }}">
+                     {{ a.id }} - {{ a.NomAnimal }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Date de la visite :</label>
+        <input type="date" name="DateDerniereVisite" required><br><br>
+
+        <label>Date du dernier vaccin :</label>
+        <input type="date" name="DateDernierVaccin"><br><br>
+
+        <label>Date de la dernière échographie :</label>
+        <input type="date" name="DateDerniereEchographie"><br><br>
+
+        <label>Pathologie :</label>
+        <input type="text" name="Pathologie"><br><br>
+
+        <label>Description :</label>
+        <textarea name="DescriptionVisite" rows="4"></textarea><br><br>
+
+        <label>Vaccin :</label>
+        <select name="IdVaccin">
+            <option value="">Aucun</option>
+            {% for v in vaccins %}
+                <option value="{{ v.id }}">{{ v.NomVaccin }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Soigneur :</label>
+        <select name="Prenom" required>
+            {% for s in soigneurs %}
+                <option value="{{ s.id }}">{{ s.Prenom }} {{ s.Nom }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Ajouter la visite</button>
+    </form>
+
+</body>
+</html>

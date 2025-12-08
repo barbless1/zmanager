@@ -26,8 +26,21 @@ class Visite(models.Model):
     Pathologie = models.CharField(max_length=32, null=True, blank=True)
     DescriptionVisite = models.CharField(max_length=255, null=True, blank=True)
     
-    Animal = models.ForeignKey('Animal', on_delete=models.CASCADE)
-    IdVaccin = models.ForeignKey('Vaccin', on_delete=models.SET_NULL, null=True, blank=True)
+    IdVaccin = models.ForeignKey(
+        Vaccin,
+        on_delete=models.SET_NULL,
+        null=True,
+        db_column="IdVaccin_id"
+    )
+
+    Prenom = models.ForeignKey(
+        Soigneur,
+        on_delete=models.CASCADE,
+        db_column="Prenom_id"
+    )
+
+    class Meta:
+        db_table = "zoo_visite"
 
 class Accidents(models.Model):
     DateAccident = models.DateField(default='1970-01-01')
