@@ -17,8 +17,6 @@ class Soigneur(models.Model):
     Specialisation = models.CharField(max_length=200, default='tartempion')
     Age = models.IntegerField(default='0')
 
-class Vaccin(models.Model):
-    NomVaccin = models.CharField(max_length=200)
 
 class Visite(models.Model):
     IdVisite = models.AutoField(primary_key=True)
@@ -26,9 +24,8 @@ class Visite(models.Model):
     DateDernierVaccin = models.DateField(null=True, blank=True)
     Pathologie = models.CharField(max_length=32, null=True, blank=True)
     DescriptionVisite = models.CharField(max_length=255, null=True, blank=True)
-    
     Animal = models.ForeignKey('Animal', on_delete=models.CASCADE)
-    Vaccin = models.ForeignKey('Vaccin', on_delete=models.SET_NULL, null=True, blank=True)
+
 
 class Accidents(models.Model):
     DateAccident = models.DateField(default='1970-01-01')

@@ -4,7 +4,7 @@ from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Animal, Accidents, Visite, Vaccin, Soigneur
+from .models import Animal, Accidents, Visite, Soigneur
 from django.shortcuts import render, get_object_or_404
 
 def login_view(request):
@@ -96,11 +96,8 @@ def add_visite(request):
         Visite.objects.create(
             DateDerniereVisite=DateDerniereVisite,
             DateDernierVaccin=DateDernierVaccin,
-            DateDerniereEchographie=DateDerniereEchographie,
             Pathologie=Pathologie,
             DescriptionVisite=DescriptionVisite,
-            IdVaccin_id=IdVaccin_id if IdVaccin_id else None,
-            Prenom_id=Prenom_id,
             Animal_id=Animal_id
     )
 

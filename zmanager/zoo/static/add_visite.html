@@ -17,20 +17,11 @@
 
     <div class="message-bienvenue">
         Bonjour {{ user.first_name }} ! |
-        <a href="{% url 'admin:index' %}">Administration</a> |
         <a href="{% url 'logout' %}">Déconnexion</a> |
-    </div>
-
-    <div class="Animaux">
-        <button onclick='location.href="/animaux"'>Animaux</button>
     </div>
 
     <div class="Visite">
         <button onclick='location.href="/visites"'>Visites</button>
-    </div>
-
-    <div class="Soigneur">
-        <button onclick='location.href="/soigneurs"'>Soigneurs</button>
     </div>
 
 </header>
@@ -41,8 +32,6 @@
 
     <form method="POST" style="width:50%; margin:auto; background:white; padding:20px; border-radius:10px;">
         {% csrf_token %}
-
-
         <label>Animal :</label>
         <select name="Animal" required>
             {% for a in animaux %}
@@ -57,9 +46,6 @@
 
         <label>Date du dernier vaccin :</label>
         <input type="date" name="DateDernierVaccin"><br><br>
-
-        <label>Date de la dernière échographie :</label>
-        <input type="date" name="DateDerniereEchographie"><br><br>
 
         <label>Pathologie :</label>
         <input type="text" name="Pathologie"><br><br>
