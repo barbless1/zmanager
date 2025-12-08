@@ -117,7 +117,7 @@ def add_visite(request):
 
 @login_required
 def visites_list(request):
-    visites = Visite.objects.select_related("IdVaccin", "Prenom").all()
+    visites = Visite.objects.all()
     return render(request, "visites.html", {"visites": visites})
 def soigneurs(request):
     soigneur = Soigneur.objects.all()

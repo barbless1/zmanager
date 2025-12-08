@@ -39,7 +39,6 @@
 
 <body>
 <table>
-    {{% for a in visites }}
         <tr>
             <th>Animal</th>
             <th>ID</th>
@@ -58,21 +57,13 @@
             <td>{{ v.IdVisite }}</td>
             <td>{{ v.DateDerniereVisite }}</td>
             <td>{{ v.DateDernierVaccin }}</td>
-            <td>{{ v.DateDerniereEchographie }}</td>
             <td>{{ v.Pathologie }}</td>
             <td>{{ v.DescriptionVisite }}</td>
-
-            <td>
-                {% if v.IdVaccin %}
-                    {{ v.IdVaccin.NomVaccin }}
-                {% else %}
-                    Aucun
-                {% endif %}
-            </td>
 
             <td>{{ v.Prenom.Prenom }}</td>
         </tr>
         {% endfor %}
+
     </table>
 
 </body>
