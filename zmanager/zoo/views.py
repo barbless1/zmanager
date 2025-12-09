@@ -46,17 +46,9 @@ def dashboard(request):
 
 @login_required
 def visites(request):
-    Visite = Visite.objects.all()
+    visites = Visite.objects.all()
     return render(request, 'visites.html', {"visites": visites})
-
-@login_required
-def dashboard(request):
-    if not request.user.is_superuser:
-        # Redirect non-superuser to a different page
-        return redirect('accueil')   # or another template
-
-    animals = Animal.objects.all()
-    return render(request, 'animaux.html', {"animals": animals})
+    
 
 
 @login_required

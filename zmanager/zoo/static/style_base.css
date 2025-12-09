@@ -176,23 +176,6 @@ html, body {
     font-size: 15px;
 }
 
-.dropdown-container {
-    width: 200px;
-    max-height: 200px; 
-    overflow-y: auto; 
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px;
-}
-
-.dropdown-item {
-    padding: 5px;
-    cursor: pointer;
-}
-
-.dropdown-item:hover {
-    background-color: #f0f0f0;
-}
 
 .info-soigneur {
     position: fixed;
@@ -213,3 +196,4 @@ html, body {
     width: 200px;
     height: 200px;
 }
+
